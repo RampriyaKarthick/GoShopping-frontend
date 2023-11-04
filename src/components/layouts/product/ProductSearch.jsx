@@ -7,6 +7,10 @@ import Product from "./Product";
 import { toast } from "react-toastify";
 import Pagination from "react-js-pagination";
 import { useParams } from "react-router-dom";
+import Slider from 'rc-slider'
+import 'rc-slider/assets/index.css';
+import Tooltip from 'rc-tooltip'
+import 'rc-tooltip/assets/bootstrap.css'
 
 function ProductSearch() {
   const dispatch = useDispatch();
@@ -44,6 +48,28 @@ function ProductSearch() {
             <div className="row">
             <div className="col-6 col-md-3 mb-5 mt-5">
             <div className="px-5">
+<Slider
+  range={true}
+  marks={
+    {
+      1:"$1",
+      1000:"$1000"
+    }
+  }
+  min={1}
+  max={1000}
+  defaultValue={[1,1000]}
+  handleRender={
+    renderProps =>{
+return (
+  <Tooltip overlay={`$${renderProps.props['aria-valuenow']}`}>
+    <div {...renderProps.props}> </div>
+  </Tooltip>
+)
+    }
+    }
+/>
+
 
             </div>
 
